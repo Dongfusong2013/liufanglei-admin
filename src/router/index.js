@@ -82,25 +82,34 @@ export const constantRoutes = [{
       title: '新闻管理',
       icon: 'form'
     },
-    children: [{
+    children: [
+      {
         path: 'list',
         name: 'newsList',
         component: () => import('@/views/newsList'),
         meta: {
           title: '新闻列表',
           icon: 'form',
-          keepAlive: true
         }
       },
       {
-        path: 'edit',
+        path: 'edit/:id(\\d+)',
         name: 'newsEdit',
         component: () => import('@/views/newsEdit'),
         meta: {
           title: '新闻编辑',
           icon: 'form',
-          keepAlive: true
-        }
+        },
+        hidden: true,
+      },
+      {
+        path: 'create',
+        name: 'newsCreate',
+        component: () => import('@/views/newsCreate'),
+        meta: {
+          title: '创建新闻',
+          icon: 'form',
+        },
       }
     ]
   },
@@ -108,7 +117,7 @@ export const constantRoutes = [{
     path: '/articleManage',
     component: Layout,
     meta: {
-      title: '文章管理',
+      title: '理念管理',
       icon: 'form'
     },
     children: [{
@@ -116,20 +125,28 @@ export const constantRoutes = [{
         name: 'articleList',
         component: () => import('@/views/articleList'),
         meta: {
-          title: '文章列表',
+          title: '理念列表',
           icon: 'form',
-          keepAlive: true
         }
       },
       {
-        path: 'edit',
+        path: 'edit/:id(\\d+)',
         name: 'articleEdit',
         component: () => import('@/views/articleEdit'),
         meta: {
-          title: '文章编辑',
+          title: '理念编辑',
           icon: 'form',
-          keepAlive: true
-        }
+        },
+        hidden:true
+      },
+      {
+        path: 'create',
+        name: 'articleCreate',
+        component: () => import('@/views/articleCreate'),
+        meta: {
+          title: '创建理念',
+          icon: 'form',
+        },
       }
     ]
   },
@@ -151,7 +168,7 @@ export const constantRoutes = [{
         }
       },
       {
-        path: 'edit',
+        path: 'edit/:id(\\d+)',
         name: 'articleEdit',
         component: () => import('@/views/civilizationEdit'),
         meta: {
