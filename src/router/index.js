@@ -169,7 +169,7 @@ export const constantRoutes = [{
       },
       {
         path: 'edit/:id(\\d+)',
-        name: 'articleEdit',
+        name: 'civilizationEdit',
         component: () => import('@/views/civilizationEdit'),
         meta: {
           title: '编辑项目',
