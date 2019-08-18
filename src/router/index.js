@@ -30,8 +30,7 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
+export const constantRoutes = [{
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -51,23 +50,30 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: {
+        title: '首页',
+        icon: 'dashboard'
+      }
     }]
   },
   {
-    path: '/首页轮播',
+    path: '/mainPage',
     component: Layout,
     redirect: '/mainPage/table',
     name: 'mainPage',
-    meta: { title: '首页轮播', icon: 'example' },
-    children: [
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '首页轮播', icon: 'example' }
+    meta: {
+      title: '轮播管理',
+      icon: 'example'
+    },
+    children: [{
+      path: 'tree',
+      name: 'Tree',
+      component: () => import('@/views/tree/index'),
+      meta: {
+        title: '轮播管理',
+        icon: 'example'
       }
-    ]
+    }]
   },
   {
     path: '/newsManage',
@@ -76,40 +82,83 @@ export const constantRoutes = [
       title: '新闻管理',
       icon: 'form'
     },
-    children: [
-      {
+    children: [{
         path: 'list',
         name: 'newsList',
         component: () => import('@/views/newsList'),
-        meta: { title: '新闻列表', icon: 'form',  keepAlive: true }
+        meta: {
+          title: '新闻列表',
+          icon: 'form',
+          keepAlive: true
+        }
       },
       {
         path: 'edit',
         name: 'newsEdit',
         component: () => import('@/views/newsEdit'),
-        meta: { title: '新闻编辑', icon: 'form',  keepAlive: true }
+        meta: {
+          title: '新闻编辑',
+          icon: 'form',
+          keepAlive: true
+        }
       }
     ]
   },
-{
+  {
     path: '/articleManage',
     component: Layout,
     meta: {
       title: '文章管理',
       icon: 'form'
     },
-    children: [
-      {
+    children: [{
         path: 'list',
         name: 'articleList',
         component: () => import('@/views/articleList'),
-        meta: { title: '文章列表', icon: 'form',  keepAlive: true }
+        meta: {
+          title: '文章列表',
+          icon: 'form',
+          keepAlive: true
+        }
       },
       {
         path: 'edit',
         name: 'articleEdit',
         component: () => import('@/views/articleEdit'),
-        meta: { title: '文章编辑', icon: 'form',  keepAlive: true }
+        meta: {
+          title: '文章编辑',
+          icon: 'form',
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/civilization',
+    component: Layout,
+    meta: {
+      title: '文明印迹',
+      icon: 'form'
+    },
+    children: [{
+        path: 'list',
+        name: 'civilizationList',
+        component: () => import('@/views/civilizationList'),
+        meta: {
+          title: '建筑列表',
+          icon: 'form',
+          keepAlive: true
+        }
+      },
+      {
+        path: 'edit',
+        name: 'articleEdit',
+        component: () => import('@/views/civilizationEdit'),
+        meta: {
+          title: '编辑项目',
+          icon: 'form',
+          keepAlive: true
+        }
       }
     ]
   },
@@ -122,36 +171,43 @@ export const constantRoutes = [
       title: 'Nested',
       icon: 'nested'
     },
-    children: [
-      {
+    children: [{
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
+        meta: {
+          title: 'Menu1'
+        },
+        children: [{
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: {
+              title: 'Menu1-1'
+            }
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
+            meta: {
+              title: 'Menu1-2'
+            },
+            children: [{
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
+                meta: {
+                  title: 'Menu1-2-1'
+                }
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
+                meta: {
+                  title: 'Menu1-2-2'
+                }
               }
             ]
           },
@@ -159,14 +215,18 @@ export const constantRoutes = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: {
+              title: 'Menu1-3'
+            }
           }
         ]
       },
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        meta: {
+          title: 'menu2'
+        }
       }
     ]
   },
@@ -174,21 +234,28 @@ export const constantRoutes = [
   {
     path: 'external-link',
     component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+    children: [{
+      path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+      meta: {
+        title: 'External Link',
+        icon: 'link'
       }
-    ]
+    }]
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 
