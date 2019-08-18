@@ -1,10 +1,9 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
-     <keep-alive>
-      <router-view :key="key" v-if="$route.meta.keepAlive"/>
+     <keep-alive :include="cachedViews">
+      <router-view :key="key"/>
      </keep-alive>
-     <router-view :key="key" v-if="!$route.meta.keepAlive"/>
     </transition>
   </section>
 </template>
@@ -15,6 +14,9 @@ export default {
   computed: {
     key() {
       return this.$route.path
+    },
+    cachedViews(){
+      return this.$store.cachedViews;
     }
   }
 }

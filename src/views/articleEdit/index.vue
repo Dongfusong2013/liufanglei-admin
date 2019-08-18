@@ -1,6 +1,5 @@
 <template>
-  <div class="app-container">
-    <button @click="goto('/example/table')"> jump</button>
+  <div class="app-container">    
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="文章标题">
         <el-input v-model="form.name" />

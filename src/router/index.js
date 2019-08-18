@@ -55,28 +55,22 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/example',
+    path: '/首页轮播',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/mainPage/table',
+    name: 'mainPage',
+    meta: { title: '首页轮播', icon: 'example' },
     children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: '首页轮播', icon: 'example' }
       }
     ]
   },
   {
-    path: '/form',
+    path: '/newsManage',
     component: Layout,
     meta: {
       title: '新闻管理',
@@ -84,20 +78,41 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '新闻管理', icon: 'form',  keepAlive: true }
+        path: 'list',
+        name: 'newsList',
+        component: () => import('@/views/newsList'),
+        meta: { title: '新闻列表', icon: 'form',  keepAlive: true }
       },
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '新闻管理', icon: 'form',  keepAlive: true }
+        path: 'edit',
+        name: 'newsEdit',
+        component: () => import('@/views/newsEdit'),
+        meta: { title: '新闻编辑', icon: 'form',  keepAlive: true }
       }
     ]
   },
-
+{
+    path: '/articleManage',
+    component: Layout,
+    meta: {
+      title: '文章管理',
+      icon: 'form'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'articleList',
+        component: () => import('@/views/articleList'),
+        meta: { title: '文章列表', icon: 'form',  keepAlive: true }
+      },
+      {
+        path: 'edit',
+        name: 'articleEdit',
+        component: () => import('@/views/articleEdit'),
+        meta: { title: '文章编辑', icon: 'form',  keepAlive: true }
+      }
+    ]
+  },
   {
     path: '/nested',
     component: Layout,
