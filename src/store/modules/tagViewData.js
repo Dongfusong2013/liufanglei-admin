@@ -29,12 +29,23 @@ const mutations = {
                   state.visitViews.splice(i, 1);
              }
         }
+    },
+    UPDATE_VIEW(state, view){
+        for (let i = 0; i < state.visitViews.length; i++){
+             if (state.visitViews[i].path === view.path){
+                  state.visitViews[i].title = view.title;
+             }
+        }
     }
+
 }
 
 const actions = {
     addView({commit}, view){
         return commit('ADD_VIEW', view);
+    },
+    updateVisitedView({commit}, view){
+        return commit('UPDATE_VIEW', view);
     }
 }
 

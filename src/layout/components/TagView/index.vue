@@ -63,10 +63,12 @@
       isActive(tag) {
         return this.$route.fullPath === tag.path;
       },
+
       addCurrentPathToVisitViews() {
         var routeView = this.$route;
         this.ADD_VIEW(this.createTagView(routeView, false));
       },
+
       closeSelectedTag(view) {
         this.DEL_VIEW(view);
         let lastView = this.visitViews.slice(-1)[0];
