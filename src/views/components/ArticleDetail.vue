@@ -244,6 +244,7 @@
       submitForm() {
         console.log(this.postForm);
         this.postForm.articleType = "newsArticle";
+        this.postForm.articleStatus = "published";
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
@@ -254,8 +255,7 @@
                 message: "发布文章成功",
                 type: "success",
                 duration: 2000
-              });
-              this.postForm.status = "published";
+              });              
               this.loading = false;
               this.closeSelectedTag(this.$route.path);
             });

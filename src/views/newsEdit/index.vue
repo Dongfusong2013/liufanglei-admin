@@ -6,7 +6,7 @@
 import ArticleDetail from '../components/ArticleDetail.vue'
 
 export default {
-  name: 'CreateForm',
+  name: 'EditForm',
   components: { ArticleDetail }
 }
 </script>
