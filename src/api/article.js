@@ -10,9 +10,9 @@ export function fetchList(query) {
 
 export function fetchArticle(id) {
   return request({
-    url: '/article/detail',
+    url: '/article/get',
     method: 'get',
-    params: { id }
+    params: { id, articleType:'newsArticle' }
   })
 }
 
@@ -24,17 +24,18 @@ export function fetchPv(pv) {
   })
 }
 
-export function createArticle(data) {
+
+export function updateArticle(data) {
   return request({
-    url: '/article/create',
+    url: '/article/detail',
     method: 'post',
     data
   })
 }
 
-export function updateArticle(data) {
+export function getArticleList(data) {
   return request({
-    url: '/article/update',
+    url: '/article/list',
     method: 'post',
     data
   })

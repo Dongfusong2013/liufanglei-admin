@@ -6,19 +6,19 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="标题">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          {{ scope.row.articleTitle }}
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="副标题" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.articleSubTitle }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="摘要" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          {{ scope.row.articleSummary }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
@@ -47,8 +47,8 @@
 
 <script>
   import {
-    getList
-  } from '@/api/table'
+    getArticleList
+  } from '@/api/article'
 
   export default {
     filters: {
@@ -73,8 +73,13 @@
     methods: {
       fetchData() {
         this.listLoading = true
-        getList().then(response => {
-          this.list = response.data.items
+        getArticleList({
+          pageNo:0,
+          pageSize:10,
+          articleType:'newsArticle' 
+        }).then(response => {
+          this.list = response.data.content;
+          console.log("=====get article list", this.list);
           this.listLoading = false
         })
       }

@@ -47,8 +47,8 @@
 
 <script>
   import {
-    getList
-  } from '@/api/table'
+    getArticleList
+  } from '@/api/article'
 
   export default {
     filters: {
@@ -73,8 +73,13 @@
     methods: {
       fetchData() {
         this.listLoading = true
-        getList().then(response => {
-          this.list = response.data.items
+        getArticleList({
+          pageNo:0,
+          pageSize:10,
+          articleType:'newsArticle'
+        }).then(response => {        
+          // this.list = response.data.items
+          console.log("=====get article list", response);
           this.listLoading = false
         })
       }
