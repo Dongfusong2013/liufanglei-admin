@@ -99,6 +99,7 @@ export const constantRoutes = [{
         meta: {
           title: '新闻编辑',
           icon: 'form',
+          noCached:false
         },
         hidden: true,
       },
@@ -109,6 +110,7 @@ export const constantRoutes = [{
         meta: {
           title: '创建新闻',
           icon: 'form',
+          noCached:false
         },
       }
     ]
@@ -136,6 +138,7 @@ export const constantRoutes = [{
         meta: {
           title: '理念编辑',
           icon: 'form',
+          noCached:false
         },
         hidden:true
       },
@@ -146,6 +149,7 @@ export const constantRoutes = [{
         meta: {
           title: '创建理念',
           icon: 'form',
+          noCached:false
         },
       }
     ]
@@ -164,7 +168,6 @@ export const constantRoutes = [{
         meta: {
           title: '建筑列表',
           icon: 'form',
-          keepAlive: true
         }
       },
       {
@@ -174,7 +177,7 @@ export const constantRoutes = [{
         meta: {
           title: '编辑项目',
           icon: 'form',
-          keepAlive: true
+          noCached:false
         }
       }
     ]

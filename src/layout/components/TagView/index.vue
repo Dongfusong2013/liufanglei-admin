@@ -5,7 +5,7 @@
         tag="span" class="tags-view-item">
         <!-- @contextmenu.prevent.native="openMenu(tag,$event)" -->
         {{ tag.title }}
-        <span v-if="!tag.fix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+        <span v-if="!tag.fix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag.path)" />
       </router-link>
     </scroll-pane>
   </div>
@@ -56,6 +56,7 @@
         return {
           title: routeView.meta.title,
           path: routeView.fullPath,
+          noCached:routeView.meta.noCached,
           fix: fixFlag,
         }
       },
@@ -69,8 +70,8 @@
         this.ADD_VIEW(this.createTagView(routeView, false));
       },
 
-      closeSelectedTag(view) {
-        this.DEL_VIEW(view);
+      closeSelectedTag(viewPath) {
+        this.DEL_VIEW(viewPath);
         let lastView = this.visitViews.slice(-1)[0];
         if (lastView) {
           this.$router.push(lastView.path);
