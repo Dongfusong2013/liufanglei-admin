@@ -320,23 +320,30 @@ export default {
       });
     },
     draftForm() {
-      if (
-        this.postForm.content.length === 0 ||
-        this.postForm.title.length === 0
-      ) {
-        this.$message({
-          message: "请填写必要的标题和内容",
-          type: "warning"
-        });
-        return;
-      }
-      this.$message({
-        message: "保存成功",
-        type: "success",
-        showClose: true,
-        duration: 1000
+
+      console.log(this.postForm);
+      this.postForm.articleType = this.articleType;
+      this.postForm.articleStatus = "draft";
+      this.$refs.postForm.validate(valid => {
+        if (valid) {
+          console.log("=====submit=====", this.postForm);
+          updateArticle(this.postForm).then(() => {
+            this.loading = true;
+            this.$notify({
+              title: "成功",
+              message: "保存草稿成功",
+              type: "success",
+              duration: 2000
+            });
+            this.loading = false;
+            this.closeSelectedTag(this.$route.path);
+          });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
       });
-      this.postForm.status = "draft";
+
     }
   }
 };
