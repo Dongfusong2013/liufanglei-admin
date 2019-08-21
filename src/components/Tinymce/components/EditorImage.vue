@@ -12,8 +12,9 @@
         :on-success="handleSuccess"
         :before-upload="beforeUpload"
         class="editor-slide-upload"
-        action="https://httpbin.org/post"
+        action="/dev-api/thirdApi/qiniu/img"
         list-type="picture-card"
+        name="file"
       >
         <el-button size="small" type="primary">
           Click upload

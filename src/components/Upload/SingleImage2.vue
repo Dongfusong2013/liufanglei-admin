@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       tempUrl: '',
+      dataObj: { token: '', key: '' }
     }
   },
   computed: {
@@ -58,7 +59,6 @@ export default {
     },
     handleImageSuccess(response, file, fileList) {
       console.log('response', response);
-      this.tempUrl = response.imgPath;
       this.emitInput(this.tempUrl)
     },
     beforeUpload() {

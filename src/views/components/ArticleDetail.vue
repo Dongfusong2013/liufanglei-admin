@@ -29,7 +29,7 @@
               <el-row>
                 <el-col>
                   <el-form-item
-                    style="margin-bottom: 60px;"                    
+                    style="margin-bottom: 60px;"
                   >
                     <MDinput
                       v-model="postForm.articleSubTitle"
@@ -40,7 +40,7 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              
+
               <el-row style="marginTop:'40px'">
                 <el-col :span="8">
                   <el-form-item
@@ -107,7 +107,7 @@
         </el-form-item>
 
         <el-form-item prop="content" style="margin-bottom: 30px;">
-          <Tinymce ref="editor" v-model="postForm.htmlContent" :height="400" />
+          <Tinymce ref="editor" v-model="postForm.htmlContent" :height="600" />
         </el-form-item>
       </div>
     </el-form>
