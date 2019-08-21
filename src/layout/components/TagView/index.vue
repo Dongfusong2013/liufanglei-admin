@@ -46,11 +46,12 @@
     beforeMount() {
       this.fixViews.forEach((item)=>{
         this.ADD_VIEW(item);
+        this.ADD_CACHED(item);
       })
       this.addCurrentPathToVisitViews();
     },
     methods: {
-      ...mapMutations('tagViewData', ['ADD_VIEW', 'DEL_VIEW']),
+      ...mapMutations('tagViewData', ['ADD_VIEW', 'DEL_VIEW', 'ADD_CACHED']),
 
       createTagView(routeView, fixFlag){
         return {
@@ -67,11 +68,14 @@
 
       addCurrentPathToVisitViews() {
         var routeView = this.$route;
-        this.ADD_VIEW(this.createTagView(routeView, false));
+        const view = this.createTagView(routeView, false);
+        this.ADD_VIEW(view);
+        this.ADD_CACHED(view);
       },
 
       closeSelectedTag(viewPath) {
         this.DEL_VIEW(viewPath);
+        this.DEL_CACHED(viewPath);
         let lastView = this.visitViews.slice(-1)[0];
         if (lastView) {
           this.$router.push(lastView.path);

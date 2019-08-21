@@ -1,18 +1,11 @@
 const state = {
   visitViews: [],
+  cachedViews: [],
 }
 
 const getters = {
   cachedViews() {
-    var results = [];
-    let views = state.visitViews;
-    for (let view in views) {
-      if (view.noCatched == false) {
-         results.push(view.title);
-      }
-    }
-    console.log("==cachedViews===",results);
-    return results;
+    return state.cachedViews;
   }
 }
 
@@ -38,20 +31,41 @@ const mutations = {
         state.visitViews[i].title = view.title;
       }
     }
-  }
-
+  },
+  ADD_CACHED(state, view) {
+    if (view.noCached == false) {
+      console.log("add cached...",view);
+      state.cachedViews.push(view.path);
+    }
+  },
+  DEL_CACHED(state, viewPath) {
+    console.log("-----pathName", viewPath);
+    for (let i = 0; i < state.cachedViews.length; i++) {
+      if (state.cachedViews[i] === viewPath) {
+        state.cachedViews.splice(i, 1);
+        console.log("--del---pathName", viewPath);
+      }
+    }
+  },
 }
 
 const actions = {
   addView({
     commit
   }, view) {
-    return commit('ADD_VIEW', view);
+    commit('ADD_VIEW', view);
+    commit('ADD_CAHCED', view);
   },
   updateVisitedView({
     commit
   }, view) {
     return commit('UPDATE_VIEW', view);
+  },
+  deleteView({
+    commit
+  }, view) {
+    commit('ADD_VIEW', view);
+    commit('ADD_CAHCED', view);
   }
 }
 

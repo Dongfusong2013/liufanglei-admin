@@ -228,7 +228,7 @@ export default {
     this.tempRoute = Object.assign({}, this.$route);
   },
   methods: {
-    ...mapMutations("tagViewData", ["DEL_VIEW"]),
+    ...mapMutations("tagViewData", ["DEL_VIEW","DEL_CACHED"]),
     fetchData(id) {
       fetchArticle(id)
         .then(response => {
@@ -262,6 +262,7 @@ export default {
     },
     closeSelectedTag(viewPath) {
       this.DEL_VIEW(viewPath);
+      this.DEL_CACHED(viewPath);
       let lastView = this.visitViews.slice(-1)[0];
       if (lastView) {
         this.$router.push(lastView.path);

@@ -74,7 +74,7 @@
         listLoading: true
       }
     },
-    created() {
+    beforeMount() {
       this.fetchData()
     },
     methods: {
