@@ -83,7 +83,7 @@
         getArticleList({
           pageNo:0,
           pageSize:10,
-          articleType:'newsArticle'
+          articleType:'ideaArticle'
         }).then(response => {
           this.list = response.data.content;
           console.log("=====get article list", this.list);

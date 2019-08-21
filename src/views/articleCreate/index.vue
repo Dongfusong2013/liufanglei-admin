@@ -1,5 +1,5 @@
 <template>
-  <article-detail :is-edit="false" />
+  <article-detail :is-edit="false" articleType="ideaArticle" />
 </template>
 
 <script>

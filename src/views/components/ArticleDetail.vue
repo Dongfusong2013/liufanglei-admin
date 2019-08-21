@@ -129,6 +129,10 @@ export default {
     isEdit: {
       type: Boolean,
       default: false
+    },
+    articleType:{
+      type:String,
+      default:''//articleType
     }
   },
   data() {
@@ -217,7 +221,7 @@ export default {
   created() {
     if (this.isEdit) {
       const id = this.$route.params && this.$route.params.id;
-      this.fetchData(id);
+      this.fetchData(id, this.articleType);
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
@@ -229,14 +233,10 @@ export default {
   },
   methods: {
     ...mapMutations("tagViewData", ["DEL_VIEW","DEL_CACHED"]),
-    fetchData(id) {
-      fetchArticle(id)
+    fetchData(id, articleType) {
+      fetchArticle(id, articleType)
         .then(response => {
           this.postForm = response.data;
-
-          // just for test
-          this.postForm.title += `   Article Id:${this.postForm.id}`;
-          this.postForm.content_short += `   Article Id:${this.postForm.id}`;
 
           // set tagsview title
           this.setTagsViewTitle();
@@ -272,7 +272,7 @@ export default {
     },
     submitForm() {
       console.log(this.postForm);
-      this.postForm.articleType = "newsArticle";
+      this.postForm.articleType = this.articleType;
       this.postForm.articleStatus = "published";
       this.$refs.postForm.validate(valid => {
         if (valid) {

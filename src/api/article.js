@@ -8,11 +8,11 @@ export function fetchList(query) {
   })
 }
 
-export function fetchArticle(id) {
+export function fetchArticle(id, type) {
   return request({
     url: '/article/get',
     method: 'get',
-    params: { id, articleType:'newsArticle' }
+    params: { id, articleType:type}
   })
 }
 
