@@ -2,7 +2,7 @@
   <div id="tags-view-container" class="tags-view-container">
     <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link v-for="tag in visitViews" ref="tag" :key="tag.path" :class="isActive(tag)?'active':''" :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-        tag="span" class="tags-view-item" @click.native="refreshRoute">
+        tag="span" class="tags-view-item" @click.native="refreshPageForList">
         <!-- @contextmenu.prevent.native="openMenu(tag,$event)" -->
         {{ tag.title }}
         <span v-if="!tag.fix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag.path)" />
@@ -50,13 +50,14 @@
       this.addCurrentPathToVisitViews();
     },
     methods: {
-      ...mapMutations('tagViewData', ['ADD_VIEW', 'DEL_VIEW', 'ADD_CACHED']),
+      ...mapMutations('tagViewData', ['ADD_VIEW', 'DEL_VIEW', 'ADD_CACHED', 'DEL_CACHED']),
 
-      refreshRoute() {
+      //对于列表页面要重新刷新
+      refreshPageForList() {
         const path = this.$route.path;
         if (path.search("list") !== -1){
             console.log("route", this.$route);
-            // this.$router.go(0);
+            this.$router.go(0);
       }
     },
 
