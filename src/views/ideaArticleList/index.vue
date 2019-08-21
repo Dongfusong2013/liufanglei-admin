@@ -1,5 +1,5 @@
 <template>
-  <ArticleList articleType="newsArticle" baseUrl="/newsArticleManage/edit/"></ArticleList>
+  <ArticleList articleType="ideaArticle" baseUrl="/ideaArticleManage/edit/"></ArticleList>
 </template>
 
 <script>

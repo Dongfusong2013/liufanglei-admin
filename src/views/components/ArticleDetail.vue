@@ -19,6 +19,7 @@
       <div class="createPost-main-container">
         <el-row>
           <!-- <Warning /> -->
+
           <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.articleTitle" :maxlength="100" name="name" required>标题</MDinput>
@@ -26,21 +27,45 @@
 
             <div class="postInfo-container">
               <el-row>
-                <el-col :span="8">
-                  <el-form-item label-width="60px" label="副标题:" class="postInfo-container-item">
-                    <el-input
+                <el-col>
+                  <el-form-item
+                    style="margin-bottom: 60px;"                    
+                  >
+                    <MDinput
                       v-model="postForm.articleSubTitle"
+                      :maxlength="100"
+                      name="name"
+                      required
+                    >副标题</MDinput>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              
+              <el-row style="marginTop:'40px'">
+                <el-col :span="8">
+                  <el-form-item
+                    style="margin-bottom: 40px;"
+                    label-width="75px"
+                    label="作者来源:"
+                    class="postInfo-container-item"
+                  >
+                    <el-input
+                      v-model="postForm.author"
                       :rows="1"
                       type="textarea"
                       class="article-textarea"
                       autosize
-                      placeholder="请输入副标题"
+                      placeholder="请输入作者"
                     />
                   </el-form-item>
                 </el-col>
-
                 <el-col :span="10">
-                  <el-form-item label-width="120px" label="发布时间:" class="postInfo-container-item">
+                  <el-form-item
+                    style="margin-bottom: 40px;"
+                    label-width="100px"
+                    label="发布时间:"
+                    class="postInfo-container-item"
+                  >
                     <el-date-picker
                       v-model="postForm.displayTime"
                       type="datetime"
@@ -49,7 +74,6 @@
                     />
                   </el-form-item>
                 </el-col>
-
                 <el-col :span="6">
                   <el-form-item label-width="90px" label="首页显示:" class="postInfo-container-item">
                     <el-switch
@@ -108,7 +132,7 @@ const defaultForm = {
   articleTitle: "", // 文章题目
   articleSubTitle: "", // 文章副标题
   articleSummary: "", // 文章摘要
-  fromTitle:'',//文章来源
+  fromTitle: "", //文章来源
   picSrc: "", // 文章封皮图片
   display_time: undefined, // 前台展示时间
   inMainPage: false,
@@ -130,9 +154,9 @@ export default {
       type: Boolean,
       default: false
     },
-    articleType:{
-      type:String,
-      default:''//articleType
+    articleType: {
+      type: String,
+      default: "" //articleType
     }
   },
   data() {
@@ -232,7 +256,7 @@ export default {
     this.tempRoute = Object.assign({}, this.$route);
   },
   methods: {
-    ...mapMutations("tagViewData", ["DEL_VIEW","DEL_CACHED"]),
+    ...mapMutations("tagViewData", ["DEL_VIEW", "DEL_CACHED"]),
     fetchData(id, articleType) {
       fetchArticle(id, articleType)
         .then(response => {
@@ -313,7 +337,7 @@ export default {
         duration: 1000
       });
       this.postForm.status = "draft";
-    },
+    }
   }
 };
 </script>

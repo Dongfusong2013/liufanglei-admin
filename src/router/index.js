@@ -76,7 +76,7 @@ export const constantRoutes = [{
     }]
   },
   {
-    path: '/newsManage',
+    path: '/newsArticleManage',
     component: Layout,
     meta: {
       title: '新闻管理',
@@ -116,7 +116,7 @@ export const constantRoutes = [{
     ]
   },
   {
-    path: '/articleManage',
+    path: '/ideaArticleManage',
     component: Layout,
     meta: {
       title: '理念管理',
@@ -124,8 +124,8 @@ export const constantRoutes = [{
     },
     children: [{
         path: 'list',
-        name: 'articleList',
-        component: () => import('@/views/articleList'),
+        name: 'ideaArticleList',
+        component: () => import('@/views/ideaArticleList'),
         meta: {
           title: '理念列表',
           icon: 'form',
@@ -133,8 +133,8 @@ export const constantRoutes = [{
       },
       {
         path: 'edit/:id(\\d+)',
-        name: 'articleEdit',
-        component: () => import('@/views/articleEdit'),
+        name: 'ideaArticleEdit',
+        component: () => import('@/views/ideaArticleEdit'),
         meta: {
           title: '理念编辑',
           icon: 'form',
@@ -144,8 +144,8 @@ export const constantRoutes = [{
       },
       {
         path: 'create',
-        name: 'articleCreate',
-        component: () => import('@/views/articleCreate'),
+        name: 'ideaArticleCreate',
+        component: () => import('@/views/ideaArticleCreate'),
         meta: {
           title: '创建理念',
           icon: 'form',
