@@ -30,13 +30,13 @@
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.articleStatus }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="240">
+      <el-table-column align="center" prop="created_at" label="发布时间" width="240">
         <template slot-scope="scope">
           <i class="el-icon-time" />
           <span>{{ scope.row.displayTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Actions" width="120">
+      <el-table-column align="center" label="操作" width="120">
         <template slot-scope="scope">
           <router-link :to="baseUrl+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">编辑</el-button>
