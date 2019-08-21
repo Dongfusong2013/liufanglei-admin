@@ -2,7 +2,7 @@
   <div id="tags-view-container" class="tags-view-container">
     <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link v-for="tag in visitViews" ref="tag" :key="tag.path" :class="isActive(tag)?'active':''" :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-        tag="span" class="tags-view-item">
+        tag="span" class="tags-view-item" @click.native="refreshRoute">
         <!-- @contextmenu.prevent.native="openMenu(tag,$event)" -->
         {{ tag.title }}
         <span v-if="!tag.fix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag.path)" />
@@ -22,8 +22,7 @@
     name: 'TagView',
     data() {
       return {
-        fixViews: [
-          {
+        fixViews: [{
           title: '首页',
           path: '/dashboard',
           fix: true,
@@ -44,7 +43,7 @@
       }
     },
     beforeMount() {
-      this.fixViews.forEach((item)=>{
+      this.fixViews.forEach((item) => {
         this.ADD_VIEW(item);
         this.ADD_CACHED(item);
       })
@@ -53,37 +52,45 @@
     methods: {
       ...mapMutations('tagViewData', ['ADD_VIEW', 'DEL_VIEW', 'ADD_CACHED']),
 
-      createTagView(routeView, fixFlag){
-        return {
-          title: routeView.meta.title,
-          path: routeView.fullPath,
-          noCached:routeView.meta.noCached,
-          fix: fixFlag,
-        }
-      },
+      refreshRoute() {
+        const path = this.$route.path;
+        if (path.search("list") !== -1){
+            console.log("route", this.$route);
+            // this.$router.go(0);
+      }
+    },
 
-      isActive(tag) {
-        return this.$route.fullPath === tag.path;
-      },
+    createTagView(routeView, fixFlag) {
+      return {
+        title: routeView.meta.title,
+        path: routeView.fullPath,
+        noCached: routeView.meta.noCached,
+        fix: fixFlag,
+      }
+    },
 
-      addCurrentPathToVisitViews() {
-        var routeView = this.$route;
-        const view = this.createTagView(routeView, false);
-        this.ADD_VIEW(view);
-        this.ADD_CACHED(view);
-      },
+    isActive(tag) {
+      return this.$route.fullPath === tag.path;
+    },
 
-      closeSelectedTag(viewPath) {
-        this.DEL_VIEW(viewPath);
-        this.DEL_CACHED(viewPath);
-        let lastView = this.visitViews.slice(-1)[0];
-        if (lastView) {
-          this.$router.push(lastView.path);
-        } else {
-          this.$router.push('/');
-        }
+    addCurrentPathToVisitViews() {
+      var routeView = this.$route;
+      const view = this.createTagView(routeView, false);
+      this.ADD_VIEW(view);
+      this.ADD_CACHED(view);
+    },
+
+    closeSelectedTag(viewPath) {
+      this.DEL_VIEW(viewPath);
+      this.DEL_CACHED(viewPath);
+      let lastView = this.visitViews.slice(-1)[0];
+      if (lastView) {
+        this.$router.push(lastView.path);
+      } else {
+        this.$router.push('/');
       }
     }
+  }
   }
 </script>
 

@@ -76,6 +76,11 @@
     },
     beforeMount() {
       this.fetchData()
+      console.log("before mount....");
+    },
+    beforeUpdate() {
+      // this.fetchData()
+      console.log("before Update....");
     },
     methods: {
       fetchData() {

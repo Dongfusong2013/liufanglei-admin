@@ -260,6 +260,7 @@ export default {
       const title = "Edit Article";
       document.title = `${title} - ${this.postForm.id}`;
     },
+
     closeSelectedTag(viewPath) {
       this.DEL_VIEW(viewPath);
       this.DEL_CACHED(viewPath);
