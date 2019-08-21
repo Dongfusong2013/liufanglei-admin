@@ -6,7 +6,7 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="标题">
+      <el-table-column label="标题" width="110">
         <template slot-scope="scope">
           {{ scope.row.articleTitle }}
         </template>
@@ -16,9 +16,16 @@
           <span>{{ scope.row.articleSubTitle }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="摘要" width="110" align="center">
+      <el-table-column label="摘要"  align="center">
         <template slot-scope="scope">
           {{ scope.row.articleSummary }}
+        </template>
+      </el-table-column>
+      <el-table-column label="封面图片" width="210" align="center">
+        <template slot-scope="scope">
+          <div class="pic-size item-center">
+          <img :src="scope.row.picSrc" alt="" height="100%" width="100%">
+          </div>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="文章状态" width="110" align="center">
@@ -26,10 +33,10 @@
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.articleStatus }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
+      <el-table-column align="center" prop="created_at" label="Display_time" width="240">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.displayTime }}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="120">
@@ -76,7 +83,7 @@
         getArticleList({
           pageNo:0,
           pageSize:10,
-          articleType:'newsArticle' 
+          articleType:'newsArticle'
         }).then(response => {
           this.list = response.data.content;
           console.log("=====get article list", this.list);
@@ -86,3 +93,16 @@
     }
   }
 </script>
+
+<style lang="css" scoped>
+  .pic-size{
+    /* width: 50px;
+    height: 50px; */
+  }
+  .item-center{
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+  }
+</style>

@@ -1,13 +1,15 @@
 <template>
   <div class="singleImageUpload2 upload-container">
     <el-upload
-      :data="dataObj"
+
       :multiple="false"
       :show-file-list="false"
       :on-success="handleImageSuccess"
+      :before-upload="beforeUpload"
       class="image-uploader"
       drag
-      action="https://httpbin.org/post"
+      name="file"
+      action="/dev-api/thirdApi/qiniu/img"
     >
       <i class="el-icon-upload" />
       <div class="el-upload__text">
@@ -26,7 +28,8 @@
 </template>
 
 <script>
-// import { getToken } from '@/api/qiniu'
+
+import { Promise } from 'q';
 
 export default {
   name: 'SingleImageUpload2',
@@ -39,7 +42,6 @@ export default {
   data() {
     return {
       tempUrl: '',
-      dataObj: { token: '', key: '' }
     }
   },
   computed: {
@@ -54,10 +56,22 @@ export default {
     emitInput(val) {
       this.$emit('input', val)
     },
-    handleImageSuccess() {
+    handleImageSuccess(response, file, fileList) {
+      console.log('response', response);
+      this.tempUrl = response.imgPath;
       this.emitInput(this.tempUrl)
     },
     beforeUpload() {
+      // console.log('---beforeUpload-----');
+      // return new Promise((resolve, reject)=>{
+      //    getToken().then(
+      //      ()=>{
+      //        console.log("then...");
+      //      }
+      //    ).catch(()=>{
+      //       console.log("catch...");
+      //    });
+      // })
       // const _self = this
       // return new Promise((resolve, reject) => {
       //   getToken().then(response => {
