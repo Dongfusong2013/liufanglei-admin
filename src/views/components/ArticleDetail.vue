@@ -19,7 +19,6 @@
       <div class="createPost-main-container">
         <el-row>
           <!-- <Warning /> -->
-
           <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.articleTitle" :maxlength="100" name="name" required>标题</MDinput>
@@ -98,14 +97,22 @@
               autosize
               placeholder="请输入文章摘要"
             />
-            <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
+            <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}字</span>
           </el-row>
         </el-form-item>
 
         <el-form-item prop="picSrc" style="margin-bottom: 30px;" label="封面图片">
           <Upload v-model="postForm.picSrc" />
+          <el-col :span="6">
+            <el-form-item label-width="78px" label="加入轮播:" class="postInfo-container-item">
+              <el-switch
+                v-model="postForm.inScroll"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch>
+            </el-form-item>
+          </el-col>
         </el-form-item>
-
         <el-form-item prop="content" style="margin-bottom: 30px;">
           <Tinymce ref="editor" v-model="postForm.htmlContent" :height="600" />
         </el-form-item>
@@ -122,10 +129,6 @@ import Sticky from "@/components/Sticky"; // 粘性header组件
 // import { validURL } from '@/utils/validate'
 import { fetchArticle, updateArticle } from "@/api/article";
 import { mapMutations } from "vuex";
-// import { searchUser } from '@/api/remote-search'
-
-// import Warning from './Warning'
-// import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
 
 const defaultForm = {
   status: "draft",
@@ -137,7 +140,7 @@ const defaultForm = {
   display_time: undefined, // 前台展示时间
   inMainPage: false,
   id: undefined,
-  importance: 0
+  inScroll:false//是否加入轮播宣传
 };
 
 export default {

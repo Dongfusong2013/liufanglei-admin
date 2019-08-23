@@ -64,11 +64,12 @@ export default {
       this.dialogVisible = false
     },
     handleSuccess(response, file) {
+      console.log("----success----:",response,file.uid);
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
-          this.listObj[objKeyArr[i]].url = response.files.file
+          this.listObj[objKeyArr[i]].url = response.imgPath;
           this.listObj[objKeyArr[i]].hasSuccess = true
           return
         }
