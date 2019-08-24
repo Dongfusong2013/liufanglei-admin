@@ -52,7 +52,7 @@
       <el-table-column align="center" prop="created_at" label="发布时间" width="240">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.displayTime }}</span>
+          <span>{{ format(scope.row.displayTime )}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="120">
@@ -122,6 +122,10 @@ export default {
     console.log("before Update....");
   },
   methods: {
+    format(displayTime){
+        var date = new Date(displayTime);
+        return date.toLocaleDateString() +" "+ date.toLocaleTimeString();
+    },
     fetchData() {
       this.listLoading = true;
       getArticleList({

@@ -263,7 +263,9 @@ export default {
     fetchData(id, articleType) {
       fetchArticle(id, articleType)
         .then(response => {
+          console.log('response data',response.data);
           this.postForm = response.data;
+          console.log('post form',this.postForm);
 
           // set tagsview title
           this.setTagsViewTitle();
