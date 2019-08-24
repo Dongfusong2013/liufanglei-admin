@@ -155,6 +155,46 @@ export const constantRoutes = [{
     ]
   },
   {
+    path: '/focusArticleManage',
+    component: Layout,
+    meta: {
+      title: '专题管理',
+      icon: 'form'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'focusList',
+        component: () => import('@/views/focusList'),
+        meta: {
+          title: '专题列表',
+          icon: 'form',
+        }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        name: 'focusEdit',
+        component: () => import('@/views/focusEdit'),
+        meta: {
+          title: '专题编辑',
+          icon: 'form',
+          noCached:false
+        },
+        hidden: true,
+      },
+      {
+        path: 'create',
+        name: 'focusCreate',
+        component: () => import('@/views/focusCreate'),
+        meta: {
+          title: '创建专题',
+          icon: 'form',
+          noCached:false
+        },
+      }
+    ]
+  },
+  {
     path: '/civilization',
     component: Layout,
     meta: {
