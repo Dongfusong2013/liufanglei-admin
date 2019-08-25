@@ -1,5 +1,5 @@
 <template>
-  <ProjectList articleType="ideaArticle" baseUrl="/ideaArticleManage/edit/"></ProjectList>
+  <ProjectList articleType="ideaArticle" baseUrl="/projectManage/edit/"></ProjectList>
 </template>
 
 <script>

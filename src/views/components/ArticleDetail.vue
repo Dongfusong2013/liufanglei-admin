@@ -98,10 +98,12 @@
   import MDinput from "@/components/MDinput";
   import Sticky from "@/components/Sticky"; // 粘性header组件
   // import { validURL } from '@/utils/validate'
+
   import {
     fetchArticle,
     updateArticle
   } from "@/api/article";
+
   import {
     mapMutations
   } from "vuex";
@@ -283,7 +285,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateArticle(this.postForm).then(() => {
+             updateProject(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",
@@ -301,14 +303,13 @@
         });
       },
       draftForm() {
-
         console.log(this.postForm);
         this.postForm.articleType = this.articleType;
         this.postForm.articleStatus = "draft";
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateArticle(this.postForm).then(() => {
+            updateProject(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",
@@ -324,7 +325,6 @@
             return false;
           }
         });
-
       }
     }
   };

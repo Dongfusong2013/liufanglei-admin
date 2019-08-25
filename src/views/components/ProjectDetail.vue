@@ -15,15 +15,12 @@
               <MDinput v-model="postForm.projectName" :maxlength="100" name="name" required>项目名称</MDinput>
             </el-form-item>
 
-            <div class="postInfo-container">
+            <el-form-item style="margin-bottom: 40px;" label="项目描述:">
               <el-row>
-                <el-col>
-                  <el-form-item style="margin-bottom: 60px;">
-                    <MDinput v-model="postForm.description" :maxlength="100" name="name" required>项目描述</MDinput>
-                  </el-form-item>
-                </el-col>
+                <el-input v-model="postForm.description" :rows="1" type="textarea" class="article-textarea" autosize
+                  placeholder="项目描述" />
               </el-row>
-            </div>
+            </el-form-item>
           </el-col>
         </el-row>
         <el-form-item style="margin-bottom: 40px;" label="设计者和交付时间:">
@@ -78,12 +75,14 @@
   import Sticky from "@/components/Sticky"; // 粘性header组件
   // import { validURL } from '@/utils/validate'
   import {
-    fetchArticle,
-    updateArticle
-  } from "@/api/article";
+    fetchProject,
+    updateProject
+  } from "@/api/project";
+
   import {
     mapMutations
   } from "vuex";
+
   import VideoPlayerComponent from '@/components/VideoPlayerComponent.vue'
 
   const defaultForm = {
@@ -205,7 +204,6 @@
       } else {
         this.postForm = Object.assign({}, defaultForm);
       }
-
       // Why need to make a copy of this.$route here?
       // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
       // https://github.com/PanJiaChen/vue-element-admin/issues/1221
@@ -213,13 +211,12 @@
     },
     methods: {
       ...mapMutations("tagViewData", ["DEL_VIEW", "DEL_CACHED"]),
-      fetchData(id, articleType) {
-        fetchArticle(id, articleType)
+      fetchData(id) {
+        fetchProject(id)
           .then(response => {
             console.log('response data', response.data);
             this.postForm = response.data;
             console.log('post form', this.postForm);
-
             // set tagsview title
             this.setTagsViewTitle();
 
@@ -233,7 +230,7 @@
       setTagsViewTitle() {
         const title = "编辑-";
         const route = {
-          title: `${title}-${this.postForm.articleTitle.substr(0, 4)}...`,
+          title: `${title}-${this.postForm.projectName.substr(0, 4)}...`,
           path: this.tempRoute.fullPath
         };
         this.$store.dispatch("tagViewData/updateVisitedView", route);
@@ -259,7 +256,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateArticle(this.postForm).then(() => {
+            updateProject(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",
@@ -282,7 +279,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateArticle(this.postForm).then(() => {
+            updateProject(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",

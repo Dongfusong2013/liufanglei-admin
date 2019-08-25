@@ -198,7 +198,7 @@ export const constantRoutes = [{
     path: '/projectManage',
     component: Layout,
     meta: {
-      title: '专题管理',
+      title: '项目管理',
       icon: 'form'
     },
     children: [

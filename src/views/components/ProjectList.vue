@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label="序号" width="95">
-        <template slot-scope="scope">{{ scope.$index +1 }}</template>
+        <template slot-scope="scope">{{ scope.row.id +1 }}</template>
       </el-table-column>
       <el-table-column label="项目名称" align="center" width="110">
         <template slot-scope="scope">{{ scope.row.projectName }}</template>
@@ -15,13 +15,12 @@
       <el-table-column label="设计者" width="110" align="center">
         <template slot-scope="scope">{{ scope.row.designer}}</template>
       </el-table-column>
-
       <el-table-column label="建筑规模" align="center" width="130px">
         <template slot-scope="scope">{{ scope.row.area }}</template>
       </el-table-column>
 
       <el-table-column label="项目类型" align="center" width="130px">
-        <template slot-scope="scope">{{ scope.row.type }}</template>
+        <template slot-scope="scope">{{ scope.row.projectType }}</template>
       </el-table-column>
 
       <el-table-column label="项目地址" align="center" width="130px">
@@ -37,13 +36,7 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="文章状态" width="110" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.articleStatus | statusFilter">{{ scope.row.articleStatus }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="发布时间" width="240">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ format(scope.row.displayTime )}}</span>
+          <el-tag :type="scope.row.projectStatus | statusFilter">{{ scope.row.projectStatus }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="120">
@@ -54,7 +47,6 @@
         </template>
       </el-table-column>
     </el-table>
-
     <div>
       <Pagination v-show="total>0" :total="total" :page.sync="pageNo" :limit.sync="pageCount" @pagination="fetchData" />
     </div>
@@ -63,8 +55,8 @@
 
 <script>
   import {
-    getArticleList
-  } from "@/api/article";
+    getProjectList
+  } from "@/api/project";
   import Pagination from "@/components/Pagination";
 
   export default {
@@ -115,8 +107,7 @@
       },
       fetchData() {
         this.listLoading = true;
-        getArticleList({
-          articleType: this.articleType,
+        getProjectList({
           pageNo: this.pageNo - 1,
           pageSize: this.pageSize
         }).then(response => {

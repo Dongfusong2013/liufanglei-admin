@@ -8,13 +8,7 @@ export function fetchList(query) {
   })
 }
 
-export function fetchArticle(id, type) {
-  return request({
-    url: '/article/get',
-    method: 'get',
-    params: { id, articleType:type}
-  })
-}
+
 
 export function fetchPv(pv) {
   return request({
@@ -25,6 +19,13 @@ export function fetchPv(pv) {
 }
 
 
+export function fetchArticle(id, type) {
+  return request({
+    url: '/article/get',
+    method: 'get',
+    params: { id, articleType:type}
+  })
+}
 export function updateArticle(data) {
   return request({
     url: '/article/detail',
