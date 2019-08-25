@@ -17,7 +17,15 @@
 
             <el-form-item style="margin-bottom: 40px;" label="项目描述:">
               <el-row>
-                <el-input v-model="postForm.description" :rows="1" type="textarea" class="article-textarea" autosize
+                <el-input v-model="postForm.description1" :rows="1" type="textarea" class="article-textarea" autosize
+                  placeholder="项目描述" />
+              </el-row>
+              <el-row>
+                <el-input v-model="postForm.description2" :rows="1" type="textarea" class="article-textarea" autosize
+                  placeholder="项目描述" />
+              </el-row>
+              <el-row>
+                <el-input v-model="postForm.description3" :rows="1" type="textarea" class="article-textarea" autosize
                   placeholder="项目描述" />
               </el-row>
             </el-form-item>
