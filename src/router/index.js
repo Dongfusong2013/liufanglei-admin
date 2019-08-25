@@ -195,6 +195,46 @@ export const constantRoutes = [{
     ]
   },
   {
+    path: '/projectManage',
+    component: Layout,
+    meta: {
+      title: '专题管理',
+      icon: 'form'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'projectList',
+        component: () => import('@/views/projectList'),
+        meta: {
+          title: '项目列表',
+          icon: 'form',
+        }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        name: 'projectEdit',
+        component: () => import('@/views/projectEdit'),
+        meta: {
+          title: '项目编辑',
+          icon: 'form',
+          noCached:false
+        },
+        hidden: true,
+      },
+      {
+        path: 'create',
+        name: 'projectCreate',
+        component: () => import('@/views/projectCreate'),
+        meta: {
+          title: '项目创建',
+          icon: 'form',
+          noCached:false
+        },
+      }
+    ]
+  },
+  {
     path: '/civilization',
     component: Layout,
     meta: {

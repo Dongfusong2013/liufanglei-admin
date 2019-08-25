@@ -1,12 +1,12 @@
 <template>
-  <ProjectDetail :is-edit="true" articleType="ideaArticle"/>
+  <ProjectDetail :is-edit="false" articleType="ideaArticle" />
 </template>
 
 <script>
 import ProjectDetail from '../components/ProjectDetail.vue'
 
 export default {
-  name: 'EditForm',
+  name: 'CreateForm',
   components: { ProjectDetail }
 }
 </script>
