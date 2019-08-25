@@ -107,14 +107,11 @@
       },
       fetchData() {
         this.listLoading = true;
-        getProjectList({
-          pageNo: this.pageNo - 1,
-          pageSize: this.pageSize
-        }).then(response => {
+        getProjectList().then(response => {
           console.log("=====get article list", response);
-          this.total = response.data.totalElements;
-          this.list = response.data.content;
-          this.pageCount = response.data.totalPages;
+          // this.total = response.data.totalElements;
+          this.list = response.data;
+          // this.pageCount = response.data.totalPages;
           this.listLoading = false;
         });
       }
