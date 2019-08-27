@@ -1,6 +1,6 @@
 <template>
   <div class="row-container container-top create-box">
-    <baidu-map class="map" :center="center" :zoom="12">
+    <baidu-map class="map" :center="center" :zoom="12" style="margin-left: 10px;">
       <!-- 循环显示点 -->
       <div v-for="(item,index) in locations" :key="index">
         <bm-marker :position="item.position" :dragging="true" @click="infoWindowOpen">
@@ -15,6 +15,8 @@
       </bm-info-window>
 
       <el-table :data="locations" stripe style="width: 100%" @row-click="gotoPosition">
+        <el-table-column prop="id" label="建筑编号" width="100">
+        </el-table-column>
         <el-table-column prop="name" label="建筑名称" width="100">
         </el-table-column>
         <el-table-column prop="position.lng" label="经度" width="100">
@@ -26,20 +28,39 @@
       </el-table>
     </baidu-map>
     <div v-if="selectActive" class="des_container">
-      <div style="display: flex; flex-direction: row; justify-content: flex-end;">
-        <sticky :z-index="10">
-          <div class="row-box margin-top">
+
+      <div style="display: flex; flex-direction: row; justify-content: space-between; ">
+        <div>
+          <sticky :z-index="10">
+            <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="clear">新建</el-button>
+          </sticky>
+        </div>
+
+        <div class="row-box margin-top">
+          <sticky :z-index="10">
             <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">发布</el-button>
             <el-button v-loading="loading" type="warning" @click="draftForm">保存草稿</el-button>
-          </div>
-        </sticky>
+          </sticky>
+        </div>
       </div>
 
-      <el-form :model="activeItem" ref="activeItem">
+      <el-form :model="activeItem" ref="activeItem" style="margin-left: 10px; margin-top: 100px;">
         <el-row>
           <el-form-item label="建筑名称:">
             <el-input v-model="activeItem.name" :rows="1" type="textarea" autosize placeholder="请输入建筑名称" />
           </el-form-item>
+        </el-row>
+        <el-row>
+          <el-col>
+            <el-form-item label="经度:">
+              <el-input v-model="activeItem.position.lng" :rows="1" type="textarea" autosize placeholder="请输入建筑经度" />
+            </el-form-item>
+          </el-col>
+          <el-col>
+            <el-form-item label="纬度:">
+              <el-input v-model="activeItem.position.lat" :rows="1" type="textarea" autosize placeholder="请输入建筑纬度" />
+            </el-form-item>
+          </el-col>
         </el-row>
         <el-row>
           <el-form-item prop="picSrc" label="建筑图片:">
@@ -49,8 +70,7 @@
         </el-row>
         <el-row>
           <el-form-item label="建筑介绍:">
-            <el-input v-model="activeItem.descript" :rows="20" type="textarea" class="article-textarea"
-              placeholder="请输入建筑名称" />
+            <el-input v-model="activeItem.descript" :rows="20" type="textarea" class="article-textarea" placeholder="请输入建筑名称" />
           </el-form-item>
         </el-row>
       </el-form>
@@ -60,8 +80,28 @@
 </template>
 
 <script>
+  const defaultItem = {
+    position: {
+      lng: '',
+      lat: ''
+    },
+    name: '',
+    summary: '',
+    descript: '',
+    picSrc: '',
+  };
+
+  function clone(src){
+    return Object.assign({}, src);
+  }
+
   import Upload from "@/components/Upload/SingleImage2";
   import Sticky from "@/components/Sticky"; // 粘性header组件
+  import {
+    updateCivilLocation,
+    getCivilLocationList
+  } from '@/api/civilLocation.js';
+
   export default {
     computed: {
       selectActive() {
@@ -80,62 +120,48 @@
         },
         show: false,
         loading: false,
-        activeItem: {},
+        activeItem:{...defaultItem},
         locations: [{
-            position: {
-              lng: 116.404,
-              lat: 39.915
-            },
-            name: '北京市',
-            summary: '莫高窟始建于十六国时期',
-            descript: "莫高窟始建于十六国时期，据唐《李克让重修莫高窟佛龛碑》一书的记载，前秦建元二年（366年），僧人乐尊路经此山" +
-              "忽见金光闪耀，如现万佛，于是便在岩壁上开凿了第一个洞窟。此后法良禅师等又继续在此建洞修禅，称为“漠高窟”，意为",
-            picSrc: '@/static/works/项目_001.jpg'
+          position: {
+            lng: 116.404,
+            lat: 39.915,
           },
-          {
-            position: {
-              lng: 121.473354,
-              lat: 31.238413,
-            },
-            name: '上海市',
-            summary: '金字塔在埃及和美洲等地均有分布',
-            descript: "金字塔在埃及和美洲等地均有分布，古埃及的上埃及、中埃及和下埃及，今苏丹和埃及境内。现在的尼罗河下游，散布着约80座金字塔遗迹。 ," +
-              "。他们为自己修建了巨大的陵墓金字塔，金字塔就成了法老权力的象征。因为这些巨大的陵墓外形形似汉字的“金”字，因此我们将其称之为“金字塔”。在哈夫拉金字塔前，还有一尊狮身人面像守卫着法老们的陵墓。",
-            picSrc: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=714737168,3873241494&fm=26&gp=0.jpg'
-          },
-          {
-            position: {
-              lng: 121.473354,
-              lat: 31.238413,
-            },
-            name: '鞍山市',
-            summary: '金字塔在埃及和美洲等地均有分布',
-            descript: "金字塔在埃及和美洲等地均有分布，古埃及的上埃及、中埃及和下埃及，今苏丹和埃及境内。现在的尼罗河下游，散布着约80座金字塔遗迹。 ," +
-              "。他们为自己修建了巨大的陵墓金字塔，金字塔就成了法老权力的象征。因为这些巨大的陵墓外形形似汉字的“金”字，因此我们将其称之为“金字塔”。在哈夫拉金字塔前，还有一尊狮身人面像守卫着法老们的陵墓。",
-            picSrc: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=714737168,3873241494&fm=26&gp=0.jpg'
-          },
-          {
-            position: {
-              lng: 121.473354,
-              lat: 31.238413,
-            },
-            name: '吉林市',
-            summary: '金字塔在埃及和美洲等地均有分布',
-            descript: "金字塔在埃及和美洲等地均有分布，古埃及的上埃及、中埃及和下埃及，今苏丹和埃及境内。现在的尼罗河下游，散布着约80座金字塔遗迹。 ," +
-              "。他们为自己修建了巨大的陵墓金字塔，金字塔就成了法老权力的象征。因为这些巨大的陵墓外形形似汉字的“金”字，因此我们将其称之为“金字塔”。在哈夫拉金字塔前，还有一尊狮身人面像守卫着法老们的陵墓。",
-            picSrc: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=714737168,3873241494&fm=26&gp=0.jpg'
-          },
-        ],
-        selectCity: '',
+          name: '北京市',
+          summary: '莫高窟始建于十六国时期',
+          descript: "莫高窟始建于十六国时期，据唐《李克让重修莫高窟佛龛碑》一书的记载，前秦建元二年（366年），僧人乐尊路经此山" +
+            "忽见金光闪耀，如现万佛，于是便在岩壁上开凿了第一个洞窟。此后法良禅师等又继续在此建洞修禅，称为“漠高窟”，意为",
+          picSrc: '@/static/works/项目_001.jpg'
+        }, ],
         zoom: 15
       }
     },
-    methods: {
-      submitForm() {
 
+    beforeMount() {
+      getCivilLocationList().then((response) => {
+          console.log("response data", response.data);
+          this.locations = response.data;
+      })
+    },
+
+    methods: {
+      // ready(){
+      //     copyTo(this.activeItem, defaultItem);
+      // },
+      submitForm() {
+        this.loading = true;
+        console.log(this.activeItem);
+        updateCivilLocation(this.activeItem).then((response) => {
+          console.log("updateCivilLocation", response);
+          this.loading = false;
+          this.clear();
+        })
       },
       draftForm() {
 
+      },
+      clear() {
+        this.activeItem = clone(defaultItem);
+        window.scrollTo(0, 0);
       },
       infoWindowClose() {
         console.log("infowindow close");
@@ -152,8 +178,7 @@
           lng: position.lng,
           lat: position.lat
         }
-        // this.show = true;
-        this.activeItem = item;
+        this.activeItem = clone(item);
         console.log(this.center.lat);
         console.log(this.center.lng);
       }
@@ -165,9 +190,10 @@
   ;
 
   .des_container {
-    margin-left: 10px;
-    margin-right: 10px;
+
+    padding-right: 10px;
     width: 50%;
+    position: relative;
   }
 
   .pic-top {
