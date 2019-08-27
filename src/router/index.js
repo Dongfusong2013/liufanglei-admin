@@ -251,11 +251,20 @@ export const constantRoutes = [{
         }
       },
       {
+          path: 'create',
+          name: 'civilizationCreate',
+          component: () => import('@/views/civilizationCreate'),
+          meta: {
+            title: '创建文明',
+            icon: 'form',
+          }
+        },
+      {
         path: 'edit/:id(\\d+)',
         name: 'civilizationEdit',
         component: () => import('@/views/civilizationEdit'),
         meta: {
-          title: '编辑项目',
+          title: '编辑文明',
           icon: 'form',
           noCached:false
         }

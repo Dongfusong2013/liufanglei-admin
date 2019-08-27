@@ -10,11 +10,11 @@
           <el-button v-loading="loading" type="warning" @click="draftForm">保存草稿</el-button>
         </div>
       </sticky>
-
+  
       <div class="createPost-main-container">
         <el-row>
           <!-- <Warning /> -->
-          <el-col :span="24">
+          <el-col :span="24"> 
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.articleTitle" :maxlength="100" name="name" required>标题</MDinput>
             </el-form-item>
