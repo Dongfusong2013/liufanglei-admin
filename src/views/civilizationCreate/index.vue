@@ -15,7 +15,7 @@
       </bm-info-window>
 
       <el-table :data="locations" stripe style="width: 100%" @row-click="gotoPosition">
-        <el-table-column prop="id" label="建筑编号" width="100">
+        <el-table-column prop="id" label="建筑编号" width="80">
         </el-table-column>
         <el-table-column prop="name" label="建筑名称" width="100">
         </el-table-column>
@@ -28,7 +28,6 @@
       </el-table>
     </baidu-map>
     <div v-if="selectActive" class="des_container">
-
       <div style="display: flex; flex-direction: row; justify-content: space-between; ">
         <div>
           <sticky :z-index="10">
@@ -44,7 +43,7 @@
         </div>
       </div>
 
-      <el-form :model="activeItem" ref="activeItem" style="margin-left: 10px; margin-top: 100px;">
+      <el-form :model="activeItem" ref="activeItem" style="margin-left: 10px; margin-top: 30px;">
         <el-row>
           <el-form-item label="建筑名称:">
             <el-input v-model="activeItem.name" :rows="1" type="textarea" autosize placeholder="请输入建筑名称" />
@@ -69,7 +68,12 @@
           </el-form-item>
         </el-row>
         <el-row>
-          <el-form-item label="建筑介绍:">
+          <el-form-item label="建筑简介:">
+            <el-input v-model="activeItem.summary" :rows="1" type="textarea" class="article-textarea" placeholder="请输入建筑名称" />
+          </el-form-item>
+        </el-row>
+        <el-row>
+          <el-form-item label="建筑描述:">
             <el-input v-model="activeItem.descript" :rows="20" type="textarea" class="article-textarea" placeholder="请输入建筑名称" />
           </el-form-item>
         </el-row>
