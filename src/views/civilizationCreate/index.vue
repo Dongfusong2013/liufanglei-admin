@@ -1,6 +1,9 @@
 <template>
   <div class="row-container container-top create-box">
-    <baidu-map class="map" :center="center" :zoom="12" style="margin-left: 10px;">
+    <baidu-map class="map" :center="center" :zoom="1" style="margin-left: 10px;" :mapStyle="mapStyle">
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+      <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map>
+
       <!-- 循环显示点 -->
       <div v-for="(item,index) in locations" :key="index">
         <bm-marker :position="item.position" :dragging="true" @click="infoWindowOpen">
@@ -14,7 +17,7 @@
         </div>
       </bm-info-window>
 
-      <el-table :data="locations" stripe style="width: 100%" @row-click="gotoPosition">
+      <el-table :data="locations" stripe style="width: 100%" @row-click="gotoPosition" highlight-current-row="true">
         <el-table-column prop="id" label="建筑编号" width="80">
         </el-table-column>
         <el-table-column prop="name" label="建筑名称" width="100">
@@ -95,7 +98,7 @@
     picSrc: '',
   };
 
-  function clone(src){
+  function clone(src) {
     return Object.assign({}, src);
   }
 
@@ -118,13 +121,28 @@
     },
     data() {
       return {
+        mapStyle: {
+          styleJson: [{
+            "featureType": "continent",
+            "elementType": "all",
+            "stylers": {
+              "color": "#ccccccff",
+              "hue": "#cccccc",
+              "weight": "4.4",
+              "lightness": -3,
+              "saturation": 41,
+              "visibility": "on"
+            }
+          }]
+        },
         center: {
           lng: 121.473354,
           lat: 31.238413,
         },
         show: false,
         loading: false,
-        activeItem:{...defaultItem},
+        activeItem: { ...defaultItem
+        },
         locations: [{
           position: {
             lng: 116.404,
@@ -142,8 +160,8 @@
 
     beforeMount() {
       getCivilLocationList().then((response) => {
-          console.log("response data", response.data);
-          this.locations = response.data;
+        console.log("response data", response.data);
+        this.locations = response.data;
       })
     },
 
