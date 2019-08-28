@@ -57,7 +57,7 @@
         const path = this.$route.path;
         if (path.search("list") !== -1){
             console.log("route", this.$route);
-            this.$router.go(0);
+            // this.$router.go(0);
       }
     },
 
