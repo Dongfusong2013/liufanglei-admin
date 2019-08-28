@@ -10,11 +10,11 @@
           <el-button v-loading="loading" type="warning" @click="draftForm">保存草稿</el-button>
         </div>
       </sticky>
-  
+
       <div class="createPost-main-container">
         <el-row>
           <!-- <Warning /> -->
-          <el-col :span="24"> 
+          <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.articleTitle" :maxlength="100" name="name" required>标题</MDinput>
             </el-form-item>
@@ -119,8 +119,8 @@
     display_time: undefined, // 前台展示时间
     inMainPage: false,
     id: undefined,
-    inScroll: false ,//是否加入轮播宣传
-    videoSrc:','
+    inScroll: false, //是否加入轮播宣传
+    videoSrc: ','
   };
 
   export default {
@@ -143,11 +143,12 @@
         default: "" //articleType
       }
     },
-    computed:{
-        picSrc(){
-          return this.postForm.picSrc;
-        }
+    computed: {
+      picSrc() {
+        return this.postForm.picSrc;
+      }
     },
+
     data() {
       const validateRequire = (rule, value, callback) => {
         callback();
@@ -223,7 +224,11 @@
         }
       }
     },
-    created() {
+    beforeMount() {
+      var query = this.$route.query;
+      if (this.articleType === "" && query.articleType !== undefined) {
+        this.articleType = query.articleType;
+      }
       if (this.isEdit) {
         const id = this.$route.params && this.$route.params.id;
         this.fetchData(id, this.articleType);
@@ -285,7 +290,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-             updateProject(this.postForm).then(() => {
+            updateProject(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",

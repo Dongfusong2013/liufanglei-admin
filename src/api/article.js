@@ -9,13 +9,11 @@ export function fetchList(query) {
 }
 
 
-
-export function fetchPv(pv) {
-  return request({
-    url: '/article/pv',
-    method: 'get',
-    params: { pv }
-  })
+export function getScrollImageList(){
+    return request({
+      url: '/scrollImg/list',
+      method: 'get',
+    })
 }
 
 
@@ -26,6 +24,8 @@ export function fetchArticle(id, type) {
     params: { id, articleType:type}
   })
 }
+
+
 export function updateArticle(data) {
   return request({
     url: '/article/detail',

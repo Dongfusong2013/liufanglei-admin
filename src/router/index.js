@@ -57,18 +57,18 @@ export const constantRoutes = [{
     }]
   },
   {
-    path: '/mainPage',
+    path: '/scrollManage',
     component: Layout,
-    redirect: '/mainPage/table',
+    redirect: '/scrollManage/scroll',
     name: 'mainPage',
     meta: {
       title: '轮播管理',
       icon: 'example'
     },
     children: [{
-      path: 'tree',
-      name: 'Tree',
-      component: () => import('@/views/tree/index'),
+      path: 'scroll',
+      name: 'scrollImage',
+      component: () => import('@/views/scrollImage/index'),
       meta: {
         title: '轮播管理',
         icon: 'example'
