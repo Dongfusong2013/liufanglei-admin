@@ -80,7 +80,7 @@ export const constantRoutes = [{
     component: Layout,
     meta: {
       title: '新闻管理',
-      icon: 'form'
+      icon: 'message'
     },
     children: [
       {
@@ -89,7 +89,7 @@ export const constantRoutes = [{
         component: () => import('@/views/newsList'),
         meta: {
           title: '新闻列表',
-          icon: 'form',
+          icon: 'list',
         }
       },
       {
@@ -98,7 +98,7 @@ export const constantRoutes = [{
         component: () => import('@/views/newsEdit'),
         meta: {
           title: '新闻编辑',
-          icon: 'form',
+          icon: 'edit',
           noCached:false
         },
         hidden: true,
@@ -120,7 +120,7 @@ export const constantRoutes = [{
     component: Layout,
     meta: {
       title: '理念管理',
-      icon: 'form'
+      icon: 'language'
     },
     children: [{
         path: 'list',
@@ -128,7 +128,7 @@ export const constantRoutes = [{
         component: () => import('@/views/ideaArticleList'),
         meta: {
           title: '理念列表',
-          icon: 'form',
+          icon: 'list',
         }
       },
       {
@@ -137,7 +137,7 @@ export const constantRoutes = [{
         component: () => import('@/views/ideaArticleEdit'),
         meta: {
           title: '理念编辑',
-          icon: 'form',
+          icon: 'edit',
           noCached:false
         },
         hidden:true
@@ -159,7 +159,7 @@ export const constantRoutes = [{
     component: Layout,
     meta: {
       title: '专题管理',
-      icon: 'form'
+      icon: 'wechat'
     },
     children: [
       {
@@ -168,7 +168,7 @@ export const constantRoutes = [{
         component: () => import('@/views/focusList'),
         meta: {
           title: '专题列表',
-          icon: 'form',
+          icon: 'list',
         }
       },
       {
@@ -177,7 +177,7 @@ export const constantRoutes = [{
         component: () => import('@/views/focusEdit'),
         meta: {
           title: '专题编辑',
-          icon: 'form',
+          icon: 'edit',
           noCached:false
         },
         hidden: true,
@@ -199,7 +199,7 @@ export const constantRoutes = [{
     component: Layout,
     meta: {
       title: '项目管理',
-      icon: 'form'
+      icon: 'guide'
     },
     children: [
       {
@@ -208,7 +208,7 @@ export const constantRoutes = [{
         component: () => import('@/views/projectList'),
         meta: {
           title: '项目列表',
-          icon: 'form',
+          icon: 'list',
         }
       },
       {
@@ -217,7 +217,7 @@ export const constantRoutes = [{
         component: () => import('@/views/projectEdit'),
         meta: {
           title: '项目编辑',
-          icon: 'form',
+          icon: 'edit',
           noCached:false
         },
         hidden: true,
@@ -239,7 +239,7 @@ export const constantRoutes = [{
     component: Layout,
     meta: {
       title: '文明印迹',
-      icon: 'form'
+      icon: 'international'
     },
     children: [{
         path: 'list',
@@ -247,7 +247,7 @@ export const constantRoutes = [{
         component: () => import('@/views/civilizationList'),
         meta: {
           title: '建筑列表',
-          icon: 'form',
+          icon: 'list',
         }
       },
       {
