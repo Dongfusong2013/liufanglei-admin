@@ -14,7 +14,6 @@
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.projectName" :maxlength="100" name="name" required>项目名称</MDinput>
             </el-form-item>
-
             <el-form-item style="margin-bottom: 40px;" label="项目描述:">
               <el-row>
                 <el-input v-model="postForm.description1" :rows="1" type="textarea" class="article-textarea" autosize

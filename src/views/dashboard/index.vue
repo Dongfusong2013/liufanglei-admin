@@ -25,11 +25,11 @@
 </template>
 
 <script>
-  import RaddarChart from './RaddarChart.vue';
-  import PieChart from './PieChart.vue';
-  import BarChart from './BarChart.vue';
-  import LineChart from './LineChart.vue';
-  import PannelGroup from './PannelGroup.vue';
+  import RaddarChart from '../components/RaddarChart.vue';
+  import PieChart from '../components/PieChart.vue';
+  import BarChart from '../components/BarChart.vue';
+  import LineChart from '../components/LineChart.vue';
+  import PannelGroup from '../components/PannelGroup.vue';
 
   const lineChartData = {
     newVisitis: {
