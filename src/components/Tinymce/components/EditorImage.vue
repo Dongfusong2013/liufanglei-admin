@@ -12,7 +12,7 @@
         :on-success="handleSuccess"
         :before-upload="beforeUpload"
         class="editor-slide-upload"
-        action="/dev-api/thirdApi/qiniu/img"
+        action="/liufanglei_server/thirdApi/qiniu/img"
         list-type="picture-card"
         name="file"
       >

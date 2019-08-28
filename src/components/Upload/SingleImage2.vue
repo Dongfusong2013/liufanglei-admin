@@ -1,7 +1,7 @@
 <template>
   <div class="singleImageUpload2 upload-container">
     <el-upload :multiple="false" :show-file-list="false" :on-success="handleImageSuccess" :before-upload="beforeUpload"
-      class="image-uploader" drag name="file" action="/dev-api/thirdApi/qiniu/img">
+      class="image-uploader" drag name="file" action="/liufanglei_server/thirdApi/qiniu/img">
       <i class="el-icon-upload" />
       <div class="el-upload__text">
         Drag或<em>点击上传</em>

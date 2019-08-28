@@ -7,7 +7,7 @@
       class="image-uploader"
       drag
       name="file"
-      action="/dev-api/thirdApi/qiniu/img"
+      action="/liufanglei_server/thirdApi/qiniu/img"
     >
       <i class="el-icon-upload" />
       <div class="el-upload__text">

@@ -290,7 +290,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateProject(this.postForm).then(() => {
+            updateArticle(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",
@@ -314,7 +314,7 @@
         this.$refs.postForm.validate(valid => {
           if (valid) {
             console.log("=====submit=====", this.postForm);
-            updateProject(this.postForm).then(() => {
+            updateArticle(this.postForm).then(() => {
               this.loading = true;
               this.$notify({
                 title: "成功",
