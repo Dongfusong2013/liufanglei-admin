@@ -4,6 +4,13 @@
       <el-table-column align="center" label="序号" width="95">
         <template slot-scope="scope">{{ scope.$index +1 }}</template>
       </el-table-column>
+      <el-table-column label="封面图片" width="210" align="center">
+        <template slot-scope="scope">
+          <div class="pic-size item-center">
+            <img :src="scope.row.imagePath" alt height="100%" width="100%" />
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="文章标题" align="center" width="110">
         <template slot-scope="scope">{{ scope.row.articleTitle }}</template>
       </el-table-column>
@@ -13,17 +20,13 @@
       <el-table-column label="文章类型" align="center" width="110">
         <template slot-scope="scope">{{ formatArticleType(scope.row.articleType )}}</template>
       </el-table-column>
+      <el-table-column label="是否显示" align="center" width="110">
+        <template slot-scope="scope">{{ formatPresent(scope.row.present)}}</template>
+      </el-table-column>
       <el-table-column align="center" prop="created_at" label="发布时间" width="240">
         <template slot-scope="scope">
           <i class="el-icon-time" />
           <span>{{ format(scope.row.displayTime )}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="封面图片" width="210" align="center">
-        <template slot-scope="scope">
-          <div class="pic-size item-center">
-            <img :src="scope.row.imagePath" alt height="100%" width="100%" />
-          </div>
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="120">
@@ -97,6 +100,13 @@
           msg.path = "/focusArticleManage/edit/"+articleId;
         }
         this.$router.push(msg);
+      },
+      formatPresent(present){
+        if (present){
+          return "是";
+        }else{
+          return "否";
+        }
       },
       formatArticleType(str) {
         if (str === 'ideaArtile') {
