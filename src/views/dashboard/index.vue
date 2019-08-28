@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #f0f2f5; padding:10px;">
+  <div style="background-color: #f0f2f5; padding:10px; height: 1000px;">
     <el-row :gutter="40" class="panel-group">
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
@@ -112,15 +112,39 @@
         </div>
       </el-col>
     </el-row>
+    <el-row :gutter="32" style="margin-top: 30px;">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <pie-chart />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <raddar-chart />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <bar-chart />
+        </div>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
 <script>
-  import CountTo from 'vue-count-to'
+  import CountTo from 'vue-count-to';
+  import RaddarChart from './RaddarChart.vue';
+  import PieChart from './PieChart.vue';
+  import BarChart from './BarChart.vue';
 
   export default {
     components: {
-      CountTo
+      CountTo,
+      RaddarChart,
+      PieChart,
+      BarChart,
     },
     methods: {
       handleSetLineChartData(type) {
@@ -132,10 +156,10 @@
 
 <style lang="scss" scoped>
   .panel-group {
-    margin-top: 18px;
+    margin-top: 10px;
 
     .card-panel-col {
-      margin-bottom: 32px;
+      margin-bottom: 10px;
     }
 
     .card-panel {
@@ -218,6 +242,12 @@
         }
       }
     }
+  }
+
+  .chart-wrapper {
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 32px;
   }
 
   // @media (max-width:550px) {
