@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: #f0f2f5; padding:10px; height: 1000px;">
+  <div style="background-color: #f0f2f5; padding:10px;">
     <pannel-group @handleSetLineChartData="handleLineData" />
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+    <el-row style="background:#fff;padding:16px 16px 0;margin-top: 20px; mmargin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
     <el-row :gutter="32" style="margin-top: 30px;">
@@ -21,7 +21,6 @@
         </div>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
@@ -39,7 +38,7 @@
     },
     newUsersRegist: {
       expectedData: [130, 140, 141, 142, 145, 150, 160],
-      actualData: [120, 82, 91, 154, 162, 140, 130]
+      actualData: [79, 82, 108, 154, 162, 98, 130]
     },
   }
 
