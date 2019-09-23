@@ -8,7 +8,6 @@ export function fetchList(query) {
   })
 }
 
-
 export function getScrollImageList(){
     return request({
       url: '/scrollImg/list',

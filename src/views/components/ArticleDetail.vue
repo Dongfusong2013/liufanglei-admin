@@ -32,7 +32,7 @@
                 <el-col :span="8">
                   <el-form-item style="margin-bottom: 40px;" label-width="75px" label="作者来源:" class="postInfo-container-item">
                     <el-input v-model="postForm.author" :rows="1" type="textarea" class="article-textarea" autosize
-                      placeholder="请输入作者" />
+                      placeholder="请输入作者11" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="10">

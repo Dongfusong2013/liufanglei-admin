@@ -24,7 +24,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: './',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -36,7 +36,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
+    // proxy: {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       // [process.env.VUE_APP_BASE_API]: {
@@ -46,16 +46,16 @@ module.exports = {
       //     ['^' + process.env.VUE_APP_BASE_API]: ''
       //   }
       // }
-    },
-    //  proxy: {
-    //   '/liufanglei_server': {
-    //     target: 'http://localhost:9931',
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/liufanglei_server': 'liufanglei_server'
-    //     }
-    //   }
     // },
+     proxy: {
+      '/liufanglei_server': {
+        target: 'http://localhost:9931',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/liufanglei_server': 'liufanglei_server'
+        }
+      }
+    },
     // after: require('./mock/mock-server.js')
   },
   configureWebpack: {

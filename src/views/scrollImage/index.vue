@@ -109,7 +109,7 @@
         }
       },
       formatArticleType(str) {
-        if (str === 'ideaArtile') {
+        if (str === 'ideaArticle') {
           return "理念文章";
         } else if (str === "newsArticle") {
           return "新闻报道";

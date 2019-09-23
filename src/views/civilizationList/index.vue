@@ -77,7 +77,7 @@
           pageNo:0,
           pageSize:10,
           articleType:'newsArticle'
-        }).then(response => {        
+        }).then(response => {
           // this.list = response.data.items
           console.log("=====get article list", response);
           this.listLoading = false
